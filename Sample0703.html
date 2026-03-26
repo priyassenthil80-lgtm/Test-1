@@ -45,8 +45,38 @@
         opacity: 0;
     }
 }
+        .btn {
+    position: absolute;
+    bottom: 40px;
+    padding: 12px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    background: pink;
+    color: black;
+    cursor: pointer;
+}
+
+.message {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    font-size: 24px;
+    text-align: center;
+}
     </style>
 </head>
+    <script>
+function showMessage() {
+    document.getElementById("messageBox").style.display = "block";
+}
+</script>
 <body>
 
 <div class="container">
@@ -61,6 +91,9 @@
     <button onclick="showMessage()" class="btn">
     Me 💖
 </button>
+    <div id="messageBox" class="message">
+    Miss you ❤️<br>
+</div>
     <script>
 function createHeart() {
     const heart = document.createElement("div");
