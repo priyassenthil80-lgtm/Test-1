@@ -56,9 +56,9 @@
     color: black;
     cursor: pointer;
 }
-
-.message {
+        .message {
     display: none;
+    white-space: pre-line; /* 👈 enables \n line break */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -69,6 +69,12 @@
     border-radius: 10px;
     font-size: 24px;
     text-align: center;
+}
+        .highlight {
+    color: #ff4d6d;
+    font-weight: bold;
+    font-size: 30px;
+    text-shadow: 0 0 10px #ff4d6d, 0 0 20px pink;
 }
     </style>
 </head>
@@ -91,8 +97,9 @@ function showMessage() {
     <button onclick="showMessage()" class="btn">
     See me 💖
 </button>
-    <div id="messageBox" class="message">
-    I Miss you ❤️<br>
+
+        <div id="messageBox" class="message">
+    <span id="typingText"></span>
 </div>
     <script>
 function createHeart() {
@@ -111,6 +118,37 @@ function createHeart() {
 }
 
 setInterval(createHeart, 500);
+</script>
+    <script>
+const text = "I Love You ❤️\n\nI Miss You 💖\n\n Take care 🌙✨";
+let index = 0;
+
+function showMessage() {
+    let msgBox = document.getElementById("messageBox");
+    msgBox.style.display = "block";
+
+    let typing = document.getElementById("typingText");
+    typing.innerHTML = "";
+
+    index = 0;
+    typeEffect();
+}
+
+function typeEffect() {
+    if (index < text.length) {
+        let currentText = text.substring(0, index + 1);
+
+        // Highlight I MISS YOU
+        currentText = currentText.replace(
+            "I Miss You 💖",
+            "<span class='highlight'>I Miss You 💖</span>"
+        );
+
+        document.getElementById("typingText").innerHTML = currentText;
+        index++;
+        setTimeout(typeEffect, 60);
+    }
+}
 </script>
 
 </body>
